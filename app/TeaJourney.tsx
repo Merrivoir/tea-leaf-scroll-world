@@ -4,51 +4,51 @@ import { useEffect, useRef, useState } from "react";
 
 const scenes = [
   {
-    label: "Исток",
-    kicker: "01 · Рождение листа",
-    title: "До того, как стать чаем.",
-    body: "Высоко в горах туман медленно оседает на молодых листьях. Вкус начинается с воды, камня и утренней тишины.",
-    note: "Высота · 1 400 м",
+    label: "Origin",
+    kicker: "01 · The leaf begins",
+    title: "Before it becomes tea.",
+    body: "High in the mountains, mist settles slowly on the youngest leaves. Flavour begins with water, stone and the quiet of morning.",
+    note: "Elevation · 1,400 m",
     still: "/media/stills/01-valley.webp",
   },
   {
-    label: "Сбор",
-    kicker: "02 · Первое прикосновение",
-    title: "Собран только утром.",
-    body: "Руки выбирают верхние побеги — два листа и почку. Всё остальное остаётся расти до следующего тумана.",
-    note: "Ручной сбор",
+    label: "Harvest",
+    kicker: "02 · The first touch",
+    title: "Gathered only at dawn.",
+    body: "Hands choose the tender tips — two leaves and a bud. Everything else is left to grow until the mist returns.",
+    note: "Hand-picked",
     still: "/media/stills/02-harvest.webp",
   },
   {
-    label: "Воздух",
-    kicker: "03 · Дом тёплого ветра",
-    title: "Время становится ароматом.",
-    body: "На бамбуковых подносах лист теряет влагу, становится мягче и впервые раскрывает свой будущий характер.",
-    note: "Медленное завяливание",
+    label: "Air",
+    kicker: "03 · The house of warm air",
+    title: "Time becomes fragrance.",
+    body: "Across woven bamboo trays, each leaf releases moisture, softens and reveals the first trace of its future character.",
+    note: "Slow withering",
     still: "/media/stills/03-drying-house.webp",
   },
   {
-    label: "Огонь",
-    kicker: "04 · Огонь и форма",
-    title: "Огонь запоминает руки.",
-    body: "Медь, угли и ровное движение мастера останавливают окисление, скручивая аромат внутрь каждого листа.",
-    note: "Ручная обжарка",
+    label: "Fire",
+    kicker: "04 · Fire and form",
+    title: "Fire remembers the hands.",
+    body: "Copper, charcoal and the steady movement of the maker stop oxidation, folding aroma into every leaf.",
+    note: "Hand-roasted",
     still: "/media/stills/04-fire-and-form.webp",
   },
   {
-    label: "Дорога",
-    kicker: "05 · Через горы",
-    title: "Неспешная дорога к воде.",
-    body: "Чай покидает мастерскую той же тропой, по которой сюда приходят дождь, дерево и горный воздух.",
-    note: "Камень · лес · вода",
+    label: "Passage",
+    kicker: "05 · Across the mountains",
+    title: "A quiet road to water.",
+    body: "Tea leaves the workshop by the same path that carries rain, cedar and mountain air into the valley.",
+    note: "Stone · forest · water",
     still: "/media/stills/05-mountain-road.webp",
   },
   {
-    label: "Чашка",
-    kicker: "06 · Тихая церемония",
-    title: "Вся долина — в одной чашке.",
-    body: "В паре над тёмной водой снова появляются горы. Путь заканчивается там же, где начался: в тумане и тишине.",
-    note: "Температура · 82 °C",
+    label: "Cup",
+    kicker: "06 · The quiet ceremony",
+    title: "The whole valley, in one cup.",
+    body: "The mountains return in the steam above dark water. The journey ends where it began: in mist and stillness.",
+    note: "Water · 82 °C",
     still: "/media/stills/06-tea-ceremony.webp",
   },
 ];
@@ -176,7 +176,7 @@ export function TeaJourney() {
   };
 
   return (
-    <main className="journey-track" aria-label="Путь чайного листа">
+    <main className="journey-track" aria-label="The journey of a tea leaf">
       <section className="journey-shell">
         <div className="journey-stage" aria-hidden="true">
           <img className="journey-poster" src={scenes[active].still} alt="" />
@@ -202,11 +202,11 @@ export function TeaJourney() {
         <header className="journey-topbar">
           <div className="journey-brand">
             <span className="journey-brand-mark" aria-hidden="true" />
-            <span>Путь листа</span>
+            <span>The Way of the Leaf</span>
           </div>
           <div className="journey-meta">
-            <span>Горный чай · один урожай</span>
-            <span>{ready ? "Листайте медленно" : "Готовим путь…"}</span>
+            <span>Mountain tea · one harvest</span>
+            <span>{ready ? "Scroll slowly" : "Preparing the journey…"}</span>
           </div>
         </header>
 
@@ -227,21 +227,21 @@ export function TeaJourney() {
                   type="button"
                   onClick={() => jumpTo(0)}
                 >
-                  Пройти путь снова
+                  Begin again
                 </button>
               )}
             </article>
           ))}
         </div>
 
-        <nav className="journey-rail" aria-label="Этапы пути">
+        <nav className="journey-rail" aria-label="Journey chapters">
           {scenes.map((scene, index) => (
             <button
               className={`journey-dot ${active === index ? "is-active" : ""}`}
               type="button"
               key={scene.label}
               onClick={() => jumpTo(index)}
-              aria-label={`Перейти к этапу: ${scene.label}`}
+              aria-label={`Go to chapter: ${scene.label}`}
               aria-current={active === index ? "step" : undefined}
             >
               <span className="journey-dot-label">{scene.label}</span>
@@ -252,7 +252,7 @@ export function TeaJourney() {
         <footer className="journey-footer">
           <div className="journey-scroll">
             <i aria-hidden="true" />
-            <span>Скролл управляет камерой</span>
+            <span>Scroll controls the camera</span>
           </div>
           <div className="journey-progress" aria-hidden="true" />
           <span>

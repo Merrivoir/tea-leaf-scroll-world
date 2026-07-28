@@ -18,9 +18,9 @@ export async function generateMetadata(): Promise<Metadata> {
   const host = incoming.get("host") ?? "localhost:3000";
   const protocol = incoming.get("x-forwarded-proto") ?? "http";
   const origin = `${protocol}://${host}`;
-  const title = "Путь листа — от горного тумана до чашки";
+  const title = "The Way of the Leaf — From Mountain Mist to Cup";
   const description =
-    "Неспешное путешествие чайного листа через туман, руки мастеров, огонь и горную дорогу.";
+    "A quiet journey through mountain mist, careful hands, warm fire and the long road to a cup of tea.";
 
   return {
     title,
@@ -46,7 +46,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru">
+    <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
       </body>
