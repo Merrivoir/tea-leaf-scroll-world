@@ -197,7 +197,6 @@ export function TeaJourney() {
         </div>
 
         <div className="journey-shade" aria-hidden="true" />
-        <div className="journey-grain" aria-hidden="true" />
 
         <header className="journey-topbar">
           <div className="journey-brand">
