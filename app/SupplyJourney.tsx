@@ -1,54 +1,55 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 const scenes = [
   {
-    label: "Origin",
-    kicker: "01 · The leaf begins",
-    title: "Before it becomes tea.",
-    body: "High in the mountains, mist settles slowly on the youngest leaves. Flavour begins with water, stone and the quiet of morning.",
-    note: "Elevation · 1,400 m",
+    label: "Поиск",
+    kicker: "01 · Поиск поставщика",
+    title: "Находим фабрику, которой можно доверять.",
+    body: "Ищем производителей под вашу задачу, сравниваем предложения и проверяем возможности фабрик до размещения заказа.",
+    note: "Поиск · проверка · сравнение",
     still: "/media/stills/01-valley.webp",
   },
   {
-    label: "Harvest",
-    kicker: "02 · The first touch",
-    title: "Gathered only at dawn.",
-    body: "Hands choose the tender tips — two leaves and a bud. Everything else is left to grow until the mist returns.",
-    note: "Hand-picked",
+    label: "Переговоры",
+    kicker: "02 · Условия сделки",
+    title: "Договариваемся на ваших условиях.",
+    body: "Согласовываем цену, образцы, спецификацию, сроки производства, упаковку и условия оплаты напрямую с фабрикой.",
+    note: "Цена · сроки · спецификация",
     still: "/media/stills/02-harvest.webp",
   },
   {
-    label: "Air",
-    kicker: "03 · The house of warm air",
-    title: "Time becomes fragrance.",
-    body: "Across woven bamboo trays, each leaf releases moisture, softens and reveals the first trace of its future character.",
-    note: "Slow withering",
+    label: "Контроль",
+    kicker: "03 · Производство и инспекция",
+    title: "Проверяем до отправки.",
+    body: "Контролируем производство и инспектируем готовый товар: качество, количество и упаковку сверяем с согласованными требованиями.",
+    note: "Фото · отчёт · контроль качества",
     still: "/media/stills/03-drying-house.webp",
   },
   {
-    label: "Fire",
-    kicker: "04 · Fire and form",
-    title: "Fire remembers the hands.",
-    body: "Copper, charcoal and the steady movement of the maker stop oxidation, folding aroma into every leaf.",
-    note: "Hand-roasted",
+    label: "Склад",
+    kicker: "04 · Наш склад в Китае",
+    title: "Собираем всё в одном месте.",
+    body: "Принимаем партии от разных поставщиков, пересчитываем и фотографируем товар, убираем лишнюю упаковку и консолидируем груз.",
+    note: "Приёмка · хранение · консолидация",
     still: "/media/stills/04-fire-and-form.webp",
   },
   {
-    label: "Passage",
-    kicker: "05 · Across the mountains",
-    title: "A quiet road to water.",
-    body: "Tea leaves the workshop by the same path that carries rain, cedar and mountain air into the valley.",
-    note: "Stone · forest · water",
+    label: "Доставка",
+    kicker: "05 · Китай → Европа",
+    title: "Доставляем самолётом и оформляем на таможне.",
+    body: "Готовим экспортные документы, контролируем авиаперевозку и сопровождаем таможенную очистку до выпуска товара.",
+    note: "Авиа · документы · таможня",
     still: "/media/stills/05-mountain-road.webp",
   },
   {
-    label: "Cup",
-    kicker: "06 · The quiet ceremony",
-    title: "The whole valley, in one cup.",
-    body: "The mountains return in the steam above dark water. The journey ends where it began: in mist and stillness.",
-    note: "Water · 82 °C",
+    label: "Клиент",
+    kicker: "06 · Последняя миля",
+    title: "Привозим на склад клиента.",
+    body: "Забираем растаможенный груз и доставляем по указанному адресу. Вы получаете товар, готовый к продаже или использованию.",
+    note: "От фабрики · до ваших дверей",
     still: "/media/stills/06-tea-ceremony.webp",
   },
 ];
@@ -64,7 +65,7 @@ const clips = [
 const clamp = (value: number, min = 0, max = 1) =>
   Math.min(max, Math.max(min, value));
 
-export function TeaJourney() {
+export function SupplyJourney() {
   const videoRefs = useRef<Array<HTMLVideoElement | null>>([]);
   const current = useRef(clips.map(() => 0));
   const targets = useRef(clips.map(() => 0));
@@ -96,7 +97,9 @@ export function TeaJourney() {
         .then(() => !disposed && setReady(true))
         .catch(() => !disposed && setReady(true));
     } else {
-      setReady(true);
+      queueMicrotask(() => {
+        if (!disposed) setReady(true);
+      });
     }
 
     const read = () => {
@@ -176,10 +179,21 @@ export function TeaJourney() {
   };
 
   return (
-    <main className="journey-track" aria-label="The journey of a tea leaf">
+    <main
+      className="journey-track"
+      aria-label="Путь поставки из Китая в Европу"
+    >
       <section className="journey-shell">
         <div className="journey-stage" aria-hidden="true">
-          <img className="journey-poster" src={scenes[active].still} alt="" />
+          <Image
+            className="journey-poster"
+            src={scenes[active].still}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            unoptimized
+          />
           {clips.map((clip, index) => (
             <video
               key={clip}
@@ -201,11 +215,11 @@ export function TeaJourney() {
         <header className="journey-topbar">
           <div className="journey-brand">
             <span className="journey-brand-mark" aria-hidden="true" />
-            <span>The Way of the Leaf</span>
+            <span>Китай → Европа</span>
           </div>
           <div className="journey-meta">
-            <span>Mountain tea · one harvest</span>
-            <span>{ready ? "Scroll slowly" : "Preparing the journey…"}</span>
+            <span>Полный цикл поставки</span>
+            <span>{ready ? "Листайте маршрут" : "Готовим маршрут…"}</span>
           </div>
         </header>
 
@@ -226,21 +240,21 @@ export function TeaJourney() {
                   type="button"
                   onClick={() => jumpTo(0)}
                 >
-                  Begin again
+                  Пройти маршрут снова
                 </button>
               )}
             </article>
           ))}
         </div>
 
-        <nav className="journey-rail" aria-label="Journey chapters">
+        <nav className="journey-rail" aria-label="Этапы поставки">
           {scenes.map((scene, index) => (
             <button
               className={`journey-dot ${active === index ? "is-active" : ""}`}
               type="button"
               key={scene.label}
               onClick={() => jumpTo(index)}
-              aria-label={`Go to chapter: ${scene.label}`}
+              aria-label={`Перейти к этапу: ${scene.label}`}
               aria-current={active === index ? "step" : undefined}
             >
               <span className="journey-dot-label">{scene.label}</span>
@@ -251,7 +265,7 @@ export function TeaJourney() {
         <footer className="journey-footer">
           <div className="journey-scroll">
             <i aria-hidden="true" />
-            <span>Scroll controls the camera</span>
+            <span>Скролл управляет маршрутом</span>
           </div>
           <div className="journey-progress" aria-hidden="true" />
           <span>

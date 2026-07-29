@@ -1,5 +1,5 @@
-import { TeaJourney } from "./TeaJourney";
+import { SupplyJourney } from "./SupplyJourney";
 
 export default function Home() {
-  return <TeaJourney />;
+  return <SupplyJourney />;
 }

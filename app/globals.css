@@ -1,8 +1,9 @@
 :root {
-  --paper: #e9e2d3;
-  --ink: #f3efe5;
-  --ink-soft: rgba(243, 239, 229, 0.68);
-  --night: #111a14;
+  --paper: #f0f3f5;
+  --ink: #f5f7fa;
+  --ink-soft: rgba(235, 241, 247, 0.68);
+  --night: #07121d;
+  --signal: #ff6b3d;
   --journey-progress: 0;
 }
 
@@ -37,7 +38,7 @@ a {
   inset: 0;
   isolation: isolate;
   overflow: hidden;
-  background: #172017;
+  background: #0a1826;
 }
 
 .journey-stage,
@@ -62,7 +63,7 @@ a {
 .journey-film {
   opacity: 0;
   will-change: opacity;
-  filter: saturate(0.9) contrast(1.02);
+  filter: saturate(0.72) contrast(1.06) brightness(0.9);
 }
 
 .journey-film:first-of-type {
@@ -79,9 +80,9 @@ a {
   z-index: -2;
   pointer-events: none;
   background:
-    linear-gradient(90deg, rgba(10, 17, 12, 0.76) 0%, rgba(10, 17, 12, 0.38) 38%, rgba(10, 17, 12, 0.04) 68%),
-    linear-gradient(0deg, rgba(8, 14, 10, 0.48), transparent 40%),
-    radial-gradient(circle at 70% 25%, transparent 0%, rgba(8, 13, 9, 0.14) 68%, rgba(8, 13, 9, 0.44) 100%);
+    linear-gradient(90deg, rgba(5, 15, 25, 0.84) 0%, rgba(5, 15, 25, 0.48) 42%, rgba(5, 15, 25, 0.08) 72%),
+    linear-gradient(0deg, rgba(4, 12, 20, 0.58), transparent 42%),
+    radial-gradient(circle at 70% 25%, transparent 0%, rgba(5, 15, 25, 0.16) 68%, rgba(4, 12, 20, 0.52) 100%);
 }
 
 .journey-topbar {
@@ -108,12 +109,23 @@ a {
 }
 
 .journey-brand-mark {
-  width: 13px;
-  height: 20px;
-  border-radius: 90% 10% 90% 10%;
-  transform: rotate(-18deg);
-  background: linear-gradient(145deg, #b5c5a8, #50684c);
-  box-shadow: 0 0 26px rgba(174, 199, 158, 0.3);
+  position: relative;
+  width: 22px;
+  height: 10px;
+  border-top: 2px solid var(--signal);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.42);
+}
+
+.journey-brand-mark::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  right: -1px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid var(--signal);
+  border-right: 2px solid var(--signal);
+  transform: rotate(45deg);
 }
 
 .journey-meta {
@@ -204,7 +216,7 @@ a {
   pointer-events: auto;
   margin-top: 30px;
   padding: 13px 21px;
-  color: #172017;
+  color: #07121d;
   border: 0;
   border-radius: 999px;
   background: var(--paper);
@@ -218,7 +230,7 @@ a {
 
 .journey-restart:hover {
   transform: translateY(-2px);
-  background: #fffaf0;
+  background: #ffffff;
 }
 
 .journey-rail {
@@ -264,8 +276,8 @@ a {
 
 .journey-dot.is-active::after {
   inset: 3px;
-  background: #e9e2d3;
-  box-shadow: 0 0 0 5px rgba(233, 226, 211, 0.15);
+  background: var(--signal);
+  box-shadow: 0 0 0 5px rgba(255, 107, 61, 0.18);
 }
 
 .journey-dot-label {
@@ -369,8 +381,8 @@ a {
 
   .journey-shade {
     background:
-      linear-gradient(0deg, rgba(8, 14, 10, 0.86) 0%, rgba(8, 14, 10, 0.48) 38%, transparent 67%),
-      radial-gradient(circle at 50% 35%, transparent 0%, rgba(8, 13, 9, 0.28) 90%);
+      linear-gradient(0deg, rgba(4, 12, 20, 0.9) 0%, rgba(4, 12, 20, 0.54) 42%, transparent 70%),
+      radial-gradient(circle at 50% 35%, transparent 0%, rgba(4, 12, 20, 0.3) 90%);
   }
 
   .journey-copy {
