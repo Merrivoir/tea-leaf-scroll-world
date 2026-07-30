@@ -1,4 +1,3 @@
-'use client'; // Обязательно в первой строке
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { usePathname } from "next/navigation";
