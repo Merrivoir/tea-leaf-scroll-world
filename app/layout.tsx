@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { usePathname } from "next/navigation";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,29 +13,13 @@ const geistMono = Geist_Mono({
 });
 
 export async function generateMetadata(): Promise<Metadata> {
-  const incoming = await usePathname();
-  const host = incoming.get("host") ?? "localhost:3000";
-  const protocol = incoming.get("x-forwarded-proto") ?? "http";
-  const origin = `${protocol}://${host}`;
   const title = "Поставки из Китая в Европу — от фабрики до склада";
-  const description =
-    "Поиск поставщиков, переговоры с фабриками, инспекция, консолидация, авиадоставка и таможенное оформление.";
+  const description = "Поиск поставщиков, переговоры с фабриками, инспекция, консолидация, авиадоставка и таможенное оформление.";
 
   return {
     title,
     description,
-    openGraph: {
-      title,
-      description,
-      type: "website",
-      images: [{ url: `${origin}/og.png`, width: 1200, height: 630 }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [`${origin}/og.png`],
-    },
+    metadataBase: new URL("https://merrivoir.github.io/tea-leaf-scroll-world"),
   };
 }
 
